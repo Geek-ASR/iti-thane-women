@@ -187,6 +187,11 @@ html[data-contrast="high"] .hc-border { border: 1px solid #fff !important; }
   .reveal-ready [data-reveal]:not(.is-visible) { opacity: 1; transform: none; }
 }
 
+/* ---------- Installed app: no "Get the app" links inside it ---------- */
+@media (display-mode: standalone) {
+  .in-app-hidden { display: none !important; }
+}
+
 /* ---------- Print (resume, notices) ---------- */
 @media print {
   .no-print { display: none !important; }

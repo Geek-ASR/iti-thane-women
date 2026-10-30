@@ -113,7 +113,7 @@ function StudentPanels({ d }: { d: Dashboard }) {
   const att = d.cards.find((c) => c.key === 'attendance');
   const pctNum = parseFloat(String(att?.value ?? '0')) || 0;
   return (
-    <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
+    <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_1fr]">
       <div className="space-y-6">
         <Card>
           <CardTitle action={<Link href="/portal/attendance/" className="text-sm font-semibold text-brand-700 hover:underline">Details</Link>}>Attendance</CardTitle>
@@ -184,7 +184,7 @@ function StudentPanels({ d }: { d: Dashboard }) {
 
 function StaffPanels({ d, admin }: { d: Dashboard; admin: boolean }) {
   return (
-    <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
+    <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_1fr]">
       <div className="space-y-6">
         {admin && d.pending && (
           <Card>
@@ -295,7 +295,7 @@ function StaffPanels({ d, admin }: { d: Dashboard; admin: boolean }) {
 
 function EmployerPanels({ d }: { d: Dashboard }) {
   return (
-    <div className="mt-6 grid gap-6 lg:grid-cols-2">
+    <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
       <Card>
         <CardTitle action={<Link href="/portal/jobs/?mine=1" className="text-sm font-semibold text-brand-700 hover:underline">All</Link>}>Your openings</CardTitle>
         {d.openJobs?.length ? (

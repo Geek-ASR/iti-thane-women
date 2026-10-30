@@ -26,7 +26,7 @@ Official website and Smart Campus portal for **Rajmata Jijau Government Industri
 | **Website CMS** | The office edits notices, events, gallery, downloads and the staff directory (bilingual), and site switches such as the notice ticker and the “admissions open” banner. |
 | **People & batches** | Trainee/staff/employer accounts, approvals, CSV/Excel import of trainees, temporary passwords, batch ↔ instructor mapping. |
 
-The portal is an installable PWA (home-screen icon, offline shell).
+The portal is an installable PWA (home-screen icon, offline shell). Share **`/app/`** to get people onto it: it opens an install page in the visitor's language, with a one-tap install on Android, Add to Home Screen steps for iPhone, and a QR code for desktop visitors.
 
 ---
 

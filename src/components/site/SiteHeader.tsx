@@ -4,7 +4,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowRight, ChevronDown, Mail, Menu, Navigation, Phone, Search, UserRound, X } from 'lucide-react';
+import { ArrowRight, ChevronDown, Mail, Menu, Navigation, Phone, Search, Smartphone, UserRound, X } from 'lucide-react';
 import { mainNav, type NavGroup } from '@/lib/nav';
 import { href, t, tx, type Locale } from '@/lib/i18n';
 import { institute } from '@/content/institute';
@@ -318,6 +318,10 @@ function MobileMenu({ lang, onClose, onSearch }: { lang: Locale; onClose: () => 
         <Link href="/portal/" className={buttonClass('primary', 'lg', 'mt-4 w-full')}>
           <UserRound className="size-5" aria-hidden />
           {ui.portal}
+        </Link>
+        <Link href={href(lang, '/app/')} className={buttonClass('outline', 'lg', 'in-app-hidden mt-2 w-full')}>
+          <Smartphone className="size-5" aria-hidden />
+          {ui.getApp}
         </Link>
       </div>
     </div>

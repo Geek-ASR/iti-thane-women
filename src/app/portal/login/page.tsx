@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState, type FormEvent } from 'react';
-import { ArrowRight, BriefcaseBusiness, Eye, EyeOff, GraduationCap, KeyRound, QrCode, ShieldCheck, UserRound } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, Eye, EyeOff, GraduationCap, KeyRound, QrCode, ShieldCheck, Smartphone, UserRound } from 'lucide-react';
 import { asset, BASE_PATH, DEMO_MODE } from '@/lib/config';
 import { errorMessage } from '@/lib/api';
 import { useAuth } from '@/lib/portal';
@@ -148,6 +148,11 @@ export default function LoginPage() {
             </Link>
           </p>
           <p className={cx('mt-3 text-center text-xs text-stone-500')}>Forgot your password? Contact the institute office to reset it.</p>
+          <p className="in-app-hidden mt-6 text-center text-sm">
+            <a href={`${BASE_PATH}/en/app/`} className="inline-flex items-center gap-1.5 font-semibold text-brand-700 hover:underline">
+              <Smartphone className="size-4" aria-hidden /> Get the app on your phone
+            </a>
+          </p>
         </div>
       </div>
     </div>

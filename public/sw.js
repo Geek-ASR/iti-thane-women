@@ -1,5 +1,5 @@
-/* Smart Campus service worker: network-first pages, cache-first static assets, offline fallback. */
-const VERSION = 'v1';
+/* Smart Campus service worker: network-first pages, cache-first build assets, refreshed images, offline fallback. */
+const VERSION = 'v2';
 const STATIC = `iti-static-${VERSION}`;
 const PAGES = `iti-pages-${VERSION}`;
 
@@ -16,7 +16,8 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  if (url.pathname.includes('/_next/static/') || /\.(webp|png|jpg|svg|woff2?)$/.test(url.pathname)) {
+  // Build output has hashed names and never changes: cache-first.
+  if (url.pathname.includes('/_next/static/')) {
     event.respondWith(
       caches.open(STATIC).then(async (cache) => {
         const hit = await cache.match(req);
@@ -24,6 +25,23 @@ self.addEventListener('fetch', (event) => {
         const res = await fetch(req);
         if (res.ok) cache.put(req, res.clone());
         return res;
+      }),
+    );
+    return;
+  }
+
+  // Images keep their names when replaced: answer from cache, refresh in the background.
+  if (/\.(webp|png|jpg|svg|woff2?)$/.test(url.pathname)) {
+    event.respondWith(
+      caches.open(STATIC).then(async (cache) => {
+        const hit = await cache.match(req);
+        const fresh = fetch(req).then((res) => {
+          if (res.ok) cache.put(req, res.clone());
+          return res;
+        });
+        if (!hit) return fresh;
+        event.waitUntil(fresh.catch(() => {}));
+        return hit;
       }),
     );
     return;

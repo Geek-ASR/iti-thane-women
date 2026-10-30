@@ -55,6 +55,7 @@ export const mainNav: NavGroup[] = [
       { label: { en: 'Notice board', mr: 'सूचना फलक' }, path: '/notices/', icon: 'Megaphone', desc: { en: 'Admissions, exams, scholarships', mr: 'प्रवेश, परीक्षा, शिष्यवृत्ती' } },
       { label: { en: 'News & events', mr: 'बातम्या व कार्यक्रम' }, path: '/events/', icon: 'CalendarDays', desc: { en: 'What’s happening on campus', mr: 'परिसरातील घडामोडी' } },
       { label: { en: 'Downloads & links', mr: 'डाउनलोड व दुवे' }, path: '/downloads/', icon: 'Download', desc: { en: 'Forms, syllabi, portals', mr: 'अर्ज, अभ्यासक्रम, पोर्टल' } },
+      { label: { en: 'Get the app', mr: 'ॲप मिळवा' }, path: '/app/', icon: 'Smartphone', desc: { en: 'Smart Campus on your phone', mr: 'स्मार्ट कॅम्पस तुमच्या फोनवर' } },
       { label: { en: 'FAQs', mr: 'वारंवार विचारले जाणारे प्रश्न' }, path: '/faq/', icon: 'CircleQuestionMark', desc: { en: 'Answers to common questions', mr: 'सामान्य प्रश्नांची उत्तरे' } },
     ],
   },
@@ -80,6 +81,7 @@ export const footerColumns: { title: L; links: NavLink[] }[] = [
       { label: { en: 'Placements', mr: 'प्लेसमेंट' }, path: '/placements/' },
       { label: { en: 'Notice board', mr: 'सूचना फलक' }, path: '/notices/' },
       { label: { en: 'Smart Campus portal', mr: 'स्मार्ट कॅम्पस पोर्टल' }, path: '/portal/' },
+      { label: { en: 'Get the app', mr: 'ॲप मिळवा' }, path: '/app/' },
     ],
   },
   {

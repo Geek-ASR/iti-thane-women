@@ -8,6 +8,7 @@ import {
   Menu, QrCode, RotateCcw, Settings, Sparkles, UserRound, UsersRound, X, type LucideIcon,
 } from 'lucide-react';
 import { asset, BASE_PATH, DEMO_MODE } from '@/lib/config';
+import { useInstallPrompt } from '@/lib/install';
 import { AuthProvider, ToastProvider, useAuth } from '@/lib/portal';
 import type { Role } from '@/lib/types';
 import { Avatar, Button, cx } from './kit';
@@ -98,20 +99,6 @@ function Brand({ dark }: { dark?: boolean }) {
       </span>
     </Link>
   );
-}
-
-function useInstallPrompt() {
-  const [evt, setEvt] = useState<(Event & { prompt: () => Promise<void> }) | null>(null);
-  useEffect(() => {
-    const on = (e: Event) => {
-      e.preventDefault();
-      setEvt(e as Event & { prompt: () => Promise<void> });
-    };
-    window.addEventListener('beforeinstallprompt', on);
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') navigator.serviceWorker.register(`${BASE_PATH}/sw.js`, { scope: `${BASE_PATH}/` }).catch(() => {});
-    return () => window.removeEventListener('beforeinstallprompt', on);
-  }, []);
-  return evt;
 }
 
 function Shell({ children }: { children: ReactNode }) {
@@ -209,7 +196,7 @@ function Shell({ children }: { children: ReactNode }) {
 
       <main id="main" className="mx-auto max-w-6xl px-4 pt-5 pb-28 sm:px-6 sm:pt-8 lg:px-10 lg:pb-12 print:max-w-none print:p-0">
         {user.status !== 'active' ? <PendingNotice role={user.role} /> : null}
-        {install && (
+        {install.available && (
           <div className="no-print mb-5 flex items-center justify-between gap-3 rounded-2xl bg-brand-50 p-3 text-sm ring-1 ring-brand-100">
             <span className="font-medium text-brand-900">Install Smart Campus on your phone for one-tap attendance.</span>
             <Button size="sm" onClick={() => install.prompt()}>Install</Button>

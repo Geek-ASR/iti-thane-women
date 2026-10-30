@@ -332,7 +332,10 @@ export default async function Home({ params }: Props) {
             </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink to="/portal/" variant="accent" size="lg" arrow>{mr ? 'स्मार्ट कॅम्पस उघडा' : 'Open Smart Campus'}</ButtonLink>
-              <ButtonLink to="/portal/jobs/" variant="glass" size="lg">{mr ? 'नोकरीच्या संधी' : 'Browse openings'}</ButtonLink>
+              <ButtonLink to="/app/" lang={lang} variant="glass" size="lg" className="in-app-hidden">
+                <Icon name="Smartphone" className="size-5" />
+                {mr ? 'ॲप मिळवा' : 'Get the app'}
+              </ButtonLink>
             </div>
           </div>
           <div className="relative">

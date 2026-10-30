@@ -30,11 +30,14 @@ export const viewport: Viewport = {
 /** Applies saved language / text-size / contrast before first paint to avoid flashes. */
 const prefs = `(function(){try{var d=document.documentElement,b=${JSON.stringify(BASE_PATH)},p=location.pathname;if(b&&p.indexOf(b)===0)p=p.slice(b.length);if(p.indexOf('/mr')===0)d.lang='mr';var f=localStorage.getItem('iti.fs');if(f)d.dataset.fs=f;if(localStorage.getItem('iti.contrast')==='high')d.dataset.contrast='high';}catch(e){}})();`;
 
+/** Holds the browser's install prompt from the first moment, for the "Install" buttons to use (see lib/install). */
+const installCapture = `addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__itiInstall=e;dispatchEvent(new Event('iti:install'))});addEventListener('appinstalled',function(){window.__itiInstall=null;dispatchEvent(new Event('iti:install'))});`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${jakarta.variable} ${mukta.variable} ${tiro.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: prefs }} />
+        <script dangerouslySetInnerHTML={{ __html: prefs + installCapture }} />
       </head>
       <body className="min-h-dvh bg-paper font-sans text-ink antialiased">{children}</body>
     </html>

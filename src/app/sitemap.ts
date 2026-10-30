@@ -21,6 +21,7 @@ export const publicPaths = [
   '/notices/',
   '/events/',
   '/downloads/',
+  '/app/',
   '/faq/',
   '/contact/',
   '/grievance/',
